@@ -164,7 +164,7 @@ function getList() {
  * *
  */
 function pushList() {
-    console.log("Shopping list",shoppingList);
+    console.log("Shopping list", shoppingList);
     document.getElementById("itemList").innerHTML = "";
     shoppingList.forEach((item) => {
         pushItem(item);
@@ -230,7 +230,7 @@ function editItem() {
  *
  *
  */
-function editScreen(isEdit, id, itemName ) {
+function editScreen(isEdit, id, itemName) {
     showScreen(isEdit ? 2 : 1);
     if (isEdit) {
         editIndex = Number(id);
@@ -319,13 +319,42 @@ function save() {
  *
  *
  */
+function test() {
+    try {
+        // login testing
+        login(true);
 
+        // item add testing
+        document.getElementById('shopping').value = "Fruit";
+        document.getElementById('addItem').click();
+        if(document.getElementById('0').innerHTML!=='Fruit' ){
+            throw new Error("item not able to add");
+         }
 
-function testing() {
+         // item edit testing
+         document.getElementById('0').click();
+         document.getElementById('editItem').value = "Fruits";
+         document.getElementById('done').click();
+         if(document.getElementById('0').innerHTML!=='Fruits' ){
+            throw new Error("item not able to edit");
+         }
 
-    pushItem("Fruit");
-    pushItem("Mango");
-    pushItem("Mango");
+         // item delete testing
+         document.getElementById('0').click();
+         document.getElementById('remove').click();
+         if(document.getElementById('0').innerHTML==='Fruits' ){
+            throw new Error("item not able to delete");
+         }
+        // past save testing
+        // shoppingList =["Fruit"];
+        // save();
+        // login(true);
+        // if(document.getElementById('oldItemList0').innerHTML!=='' ){
+        //     throw new Error("old item not able to save");
+        //  }
+    } catch (e) {
+        console.log('Testing failed', e)
+    }
 }
 // login(true);
-// testing();
+test();
